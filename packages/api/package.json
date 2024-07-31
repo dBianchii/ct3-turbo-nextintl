@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@acme/auth": "workspace:*",
+    "@acme/locales": "workspace:*",
     "@acme/db": "workspace:*",
     "@acme/validators": "workspace:*",
     "@trpc/server": "catalog:",

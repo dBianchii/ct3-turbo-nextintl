@@ -1,4 +1,5 @@
 import type { TRPCRouterRecord } from "@trpc/server";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { desc, eq } from "@acme/db";
@@ -36,5 +37,11 @@ export const postRouter = {
 
   delete: protectedProcedure.input(z.string()).mutation(({ ctx, input }) => {
     return ctx.db.delete(Post).where(eq(Post.id, input));
+  }),
+  throwMeAnError: publicProcedure.mutation(({ ctx }) => {
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: ctx.t("This is an error"),
+    });
   }),
 } satisfies TRPCRouterRecord;
