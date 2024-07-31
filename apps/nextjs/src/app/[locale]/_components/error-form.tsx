@@ -16,7 +16,6 @@ import { toast } from "@acme/ui/toast";
 import { api } from "~/trpc/react";
 
 export function ThrowErrorForm() {
-  const utils = api.useUtils();
   const createPost = api.post.throwMeAnError.useMutation({
     onSuccess: async () => {
       await utils.post.invalidate();
